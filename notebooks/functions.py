@@ -52,6 +52,7 @@ class ModelResults:
                 if model:
                     self.df = self.df.append(pd.DataFrame(data={
                         'model_structure': [str(model.sympify(include_weights=False))],
+                        'query_string': [model.to_query_string()],
                         'fold': [fold],
                         'aic': [model.aic],
                         'bic': [model.bic],
@@ -68,6 +69,7 @@ class ModelResults:
                     preds = model.predict(val)
                     self.df = self.df.append(pd.DataFrame(data={
                         'model_structure': [str(model.sympify(include_weights=False))],
+                        'query_string': [model.to_query_string()],
                         'fold': [fold],
                         'aic': [model.aic],
                         'bic': [model.bic],
@@ -180,5 +182,5 @@ def modsum(models, train, test):
         i+=1
     df = pd.DataFrame(list(zip(model_list, auc_list_train, auc_list_test, bic_list, feat_list, loss_list)),
            columns =['Model', 'AUC Train', 'AUC Test','BIC','NumFeatures','Loss'])
-    
-    return(df)    
+
+    return(df)
