@@ -170,6 +170,7 @@ def modsum(models, train, test):
     auc_list_test=[]
     bic_list=[]
     feat_list=[]
+    function_list = []
     loss_list=[]
     i=0
     for x in models:
@@ -178,9 +179,11 @@ def modsum(models, train, test):
         auc_list_test.append(str(x.roc_auc_score(test).round(2)))
         bic_list.append(str(x.bic.round(2)))
         feat_list.append(len(x.features))
+        function_list.append(x.sympify(symbolic_lr=False, symbolic_cat=True, include_weights=False))
         loss_list.append(x.loss_value)
         i+=1
-    df = pd.DataFrame(list(zip(model_list, auc_list_train, auc_list_test, bic_list, feat_list, loss_list)),
-           columns =['Model', 'AUC Train', 'AUC Test','BIC','NumFeatures','Loss'])
+    df = pd.DataFrame(list(zip(model_list, auc_list_train, auc_list_test, bic_list, feat_list, function_list, loss_list)),
+           columns =['Model', 'AUC Train', 'AUC Test', 'BIC','NumFeatures', 'function', 'Loss'])
 
     return(df)
+
