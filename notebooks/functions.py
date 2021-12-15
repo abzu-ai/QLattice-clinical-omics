@@ -183,7 +183,7 @@ def modsum(models, train, test):
         loss_list.append(x.loss_value)
         i+=1
     df = pd.DataFrame(list(zip(model_list, auc_list_train, auc_list_test, bic_list, feat_list, function_list, loss_list)),
-           columns =['Model', 'AUC Train', 'AUC Test', 'BIC','NumFeatures', 'function', 'Loss'])
+           columns =['Model', 'AUC Train', 'AUC Test', 'BIC', 'N. Features', 'Functional form', 'Loss'])
 
     return(df)
 
