@@ -186,4 +186,3 @@ def modsum(models, train, test):
            columns =['Model', 'AUC Train', 'AUC Test', 'BIC', 'N. Features', 'Functional form', 'Loss'])
 
     return(df)
-
