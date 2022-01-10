@@ -1,6 +1,7 @@
 # QLattice Clinical Omics paper
 
-Reproducible analysis and data for "Taming Clinical Omics Data with the QLattice - A Fundamentally New Approach" paper
+Reproducible analysis and data for "Identifying molecular interactions in omics data for clinical biomarker discovery" 
+paper
 
 ## Reproduce results
 
