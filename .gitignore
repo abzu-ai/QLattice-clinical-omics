@@ -5,3 +5,4 @@
 /.idea
 .DS_Store
 /models_insulin_paper
+/models_insulin_paper_train_test
