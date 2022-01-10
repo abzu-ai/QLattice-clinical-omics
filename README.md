@@ -19,4 +19,6 @@ pip install -r requirements.txt
 
 ### Run notebooks
 
+Under the folder notebooks there is a folder for each one of the four cases discussed in the paper. 
+All models, performance metrics, and figures can be reproduced by running the notebooks.
 
