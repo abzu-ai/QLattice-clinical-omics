@@ -9,6 +9,71 @@ from sklearn.metrics import precision_recall_curve, f1_score, auc
 from sklearn.model_selection import StratifiedKFold
 
 
+def random_forest_baseline(data, target, param_grid=None, n_folds=5, num_experiments=1):
+    from sklearn.model_selection import StratifiedKFold, GridSearchCV, cross_val_score
+    from sklearn.ensemble import RandomForestClassifier
+
+    if param_grid:
+        param_grid = param_grid
+    else:
+        param_grid = {'bootstrap': [True, False],
+                      'ccp_alpha': [0.0],
+                      'class_weight': ['balanced'],
+                      'max_depth': [3, 4, 5],
+                      'max_features': ['auto', 'sqrt'],
+                      'max_leaf_nodes': [None],
+                      'max_samples': [None],
+                      'min_impurity_decrease': [0.0],
+                      'min_samples_leaf': [1, 2, 4],
+                      'min_samples_split': [5, 10, 15],
+                      'min_weight_fraction_leaf': [0.0],
+                      'n_estimators': [50, 75, 100],
+                      'random_state': [42]
+                      }
+
+    data = pd.get_dummies(data)
+
+    list_scores = list()
+
+    for i in range(num_experiments):
+        inner_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+        outer_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+
+        rf = RandomForestClassifier()
+        clf = GridSearchCV(estimator=rf, param_grid=param_grid, cv=inner_cv, scoring='roc_auc')
+        nested_score = cross_val_score(clf, X=data.drop(columns=target),
+                                       y=data[target], cv=outer_cv, scoring='roc_auc').mean()
+        list_scores.append(nested_score)
+
+    return list_scores
+
+
+def lasso_baseline(data, target, param_grid=None, n_folds=5, num_experiments=5):
+    from sklearn.model_selection import StratifiedKFold, GridSearchCV, cross_val_score
+    from sklearn.linear_model import LogisticRegression
+
+    if param_grid:
+        param_grid = param_grid
+    else:
+        param_grid = {'C': [1000, 300, 100, 30, 10, 3, 1, .3, .1, .03, .01, .003, .001, .0003, .0001]}
+
+    data = pd.get_dummies(data)
+
+    list_scores = list()
+
+    for i in range(num_experiments):
+        inner_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+        outer_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+
+        lr = LogisticRegression(penalty='l1', solver='liblinear')
+        clf = GridSearchCV(estimator=lr, param_grid=param_grid, cv=inner_cv, scoring='roc_auc')
+        nested_score = cross_val_score(clf, X=data.drop(columns=target),
+                                       y=data[target], cv=outer_cv, scoring='roc_auc').mean()
+        list_scores.append(nested_score)
+
+    return list_scores
+
+
 def crossvalidation_as_framework(df, target, n_folds=5, random_state=42, use_sample_weights=True, **kwargs):
     kfold_test = StratifiedKFold(n_folds, shuffle=True, random_state=random_state)
 
