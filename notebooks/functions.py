@@ -194,7 +194,7 @@ def elasticnet_benchmark(data, target, param_grid=None, n_folds=5, num_experimen
         if not outer_cv:
             outer_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
 
-        lr = LogisticRegression(penalty='elasticnet', solver='saga')
+        lr = LogisticRegression(penalty='elasticnet', solver='saga', max_iter=300)
 
         clf = GridSearchCV(estimator=lr, param_grid=param_grid, cv=inner_cv, scoring='roc_auc', n_jobs=n_jobs)
         nested_scores = cross_val_score(clf, X=data.drop(columns=target),
