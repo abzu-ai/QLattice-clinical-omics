@@ -45,7 +45,7 @@ def random_forest_benchmark(data, target, param_grid=None, n_folds=5, num_experi
 
         if feat_selection == 'lasso':
             rfc = Pipeline([
-                ('feature_selection', SelectFromModel(LogisticRegressionCV(penalty="l1"))),
+                ('feature_selection', SelectFromModel(LogisticRegressionCV(penalty="l1", solver='liblinear'))),
                 ('rf', RandomForestClassifier())
             ])
         elif feat_selection == 'mi':
@@ -102,7 +102,7 @@ def gradient_boosting_benchmark(data, target, param_grid=None, n_folds=5, num_ex
 
         if feat_selection == 'lasso':
             gbc = Pipeline([
-                ('feature_selection', SelectFromModel(LogisticRegressionCV(penalty="l1"))),
+                ('feature_selection', SelectFromModel(LogisticRegressionCV(penalty="l1",solver='liblinear'))),
                 ('rf', GradientBoostingClassifier())
             ])
         elif feat_selection == 'mi':
