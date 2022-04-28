@@ -120,7 +120,7 @@ models = ql.auto_run(
 
 
 <?xml version="1.0" encoding="utf-8" ?>
-<svg baseProfile="full" height="160.0" preserveAspectRatio="none" version="1.1" viewBox="0 0 471 160.0" width="471" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs /><svg class="graph" height="155.0" width="471" x="0" y="0"><defs /><text fill="#1E1E1E" font-family="monospace" font-size="12" text-anchor="middle" x="406.0" y="99.0">Loss: 1.82E-01</text><text fill="#1E1E1E" font-family="monospace" font-size="12" text-anchor="start" x="0" y="145.0">Epoch no. 20/20 - Tried 23076 models - Completed in 1m 8s.</text><rect class="node" fill="#00F082" height="35" stroke="#1E1E1E" stroke-width="1" width="90" x="361" y="50.0"><title>_clinical AD diagnosis
+<svg baseProfile="full" height="160.0" preserveAspectRatio="none" version="1.1" viewBox="0 0 471 160.0" width="471" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs /><svg class="graph" height="155.0" width="471" x="0" y="0"><defs /><text fill="#1E1E1E" font-family="monospace" font-size="12" text-anchor="middle" x="406.0" y="99.0">Loss: 1.82E-01</text><text fill="#1E1E1E" font-family="monospace" font-size="12" text-anchor="start" x="0" y="145.0">Epoch no. 20/20 - Tried 23076 models - Completed in 1m 6s.</text><rect class="node" fill="#00F082" height="35" stroke="#1E1E1E" stroke-width="1" width="90" x="361" y="50.0"><title>_clinical AD diagnosis
 logistic:
 w=-4.8638
 bias=-1.1859</title></rect><text fill="#1E1E1E" font-family="monospace" font-size="12" style="pointer-events:none" text-anchor="middle" x="406.0" y="71.5">_clinica..</text><text fill="#1E1E1E" font-family="monospace" font-size="10" style="pointer-events:none" text-anchor="end" x="449" y="59.0">0</text><text fill="#1E1E1E" font-family="monospace" font-size="10" style="pointer-events:none" text-anchor="start" x="363" y="59.0">out</text><line stroke="#1E1E1E" x1="331" x2="361" y1="67.5" y2="67.5" /><rect class="node" fill="#FAFAFA" height="35" stroke="#FF1EC8" stroke-width="1" width="90" x="241" y="50.0"><title>add</title></rect><text fill="#1E1E1E" font-family="monospace" font-size="12" style="pointer-events:none" text-anchor="middle" x="286.0" y="71.5">add</text><text fill="#1E1E1E" font-family="monospace" font-size="10" style="pointer-events:none" text-anchor="end" x="329" y="59.0">1</text><line stroke="#1E1E1E" x1="211" x2="241" y1="37.5" y2="58.5" /><line stroke="#1E1E1E" x1="211" x2="241" y1="97.5" y2="76.5" /><rect class="node" fill="#FAFAFA" height="35" stroke="#FF1EC8" stroke-width="1" width="90" x="121" y="20.0"><title>add</title></rect><text fill="#1E1E1E" font-family="monospace" font-size="12" style="pointer-events:none" text-anchor="middle" x="166.0" y="41.5">add</text><text fill="#1E1E1E" font-family="monospace" font-size="10" style="pointer-events:none" text-anchor="end" x="209" y="29.0">2</text><line stroke="#1E1E1E" x1="91" x2="121" y1="37.5" y2="28.5" /><line stroke="#1E1E1E" x1="91" x2="121" y1="97.5" y2="46.5" /><rect class="node" fill="#00F082" height="35" stroke="#1E1E1E" stroke-width="1" width="90" x="1" y="20.0"><title>MAPT
@@ -229,7 +229,7 @@ best.plot_response_1d(train, by = "MAPT", input_constraints=fixed)
 
 
 
-![png](output_17_0.png)
+![png](QLattice_tutorial_files/QLattice_tutorial_17_0.png)
 
 
 
