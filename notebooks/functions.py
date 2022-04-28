@@ -5,17 +5,16 @@ import feyn
 import numpy as np
 import pandas as pd
 from feyn import Model, metrics
+from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
+from sklearn.feature_selection import SelectFromModel, SelectKBest, mutual_info_classif, f_classif
+from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
 from sklearn.metrics import precision_recall_curve, f1_score, auc
-from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold, GridSearchCV, cross_val_score
+from sklearn.pipeline import Pipeline
 
 
-def random_forest_benchmark(data, target, param_grid=None, n_folds=5, num_experiments=1, feat_selection=None):
-    from sklearn.model_selection import StratifiedKFold, GridSearchCV, cross_val_score
-    from sklearn.feature_selection import SelectFromModel, SelectKBest, mutual_info_classif, f_classif
-    from sklearn.ensemble import RandomForestClassifier
-    from sklearn.pipeline import Pipeline
-    from sklearn.linear_model import LogisticRegressionCV
-
+def random_forest_benchmark(data, target, param_grid=None, n_folds=5, num_experiments=1, feat_selection=None,
+                            n_jobs=-1, inner_cv=None, outer_cv=None):
     if param_grid:
         param_grid = param_grid
     else:
@@ -39,8 +38,10 @@ def random_forest_benchmark(data, target, param_grid=None, n_folds=5, num_experi
     list_scores = list()
 
     for i in range(num_experiments):
-        inner_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
-        outer_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+        if not inner_cv:
+            inner_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+        if not outer_cv:
+            outer_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
 
         if feat_selection == 'lasso':
             rfc = Pipeline([
@@ -62,28 +63,23 @@ def random_forest_benchmark(data, target, param_grid=None, n_folds=5, num_experi
                 ('rf', RandomForestClassifier())
             ])
 
-        clf = GridSearchCV(estimator=rfc, param_grid=param_grid, cv=inner_cv, scoring='roc_auc', n_jobs=-1)
+        clf = GridSearchCV(estimator=rfc, param_grid=param_grid, cv=inner_cv, scoring='roc_auc', n_jobs=n_jobs)
         nested_scores = cross_val_score(clf, X=data.drop(columns=target),
                                         y=data[target], cv=outer_cv, scoring='roc_auc')
 
         nested_score_mean = nested_scores.mean()
         list_scores.append(nested_score_mean)
 
-        if num_experiments == 1:
-            ans = nested_scores
-        else:
-            ans = list_scores
+    if num_experiments == 1:
+        ans = nested_scores
+    else:
+        ans = list_scores
 
     return ans
 
 
-def gradient_boosting_benchmark(data, target, param_grid=None, n_folds=5, num_experiments=1, feat_selection=None):
-    from sklearn.model_selection import StratifiedKFold, GridSearchCV, cross_val_score
-    from sklearn.feature_selection import SelectFromModel, SelectKBest, mutual_info_classif, f_classif
-    from sklearn.ensemble import GradientBoostingClassifier
-    from sklearn.pipeline import Pipeline
-    from sklearn.linear_model import LogisticRegressionCV
-
+def gradient_boosting_benchmark(data, target, param_grid=None, n_folds=5, num_experiments=1, feat_selection=None,
+                                n_jobs=-1, inner_cv=None, outer_cv=None):
     if param_grid:
         param_grid = param_grid
     else:
@@ -99,34 +95,32 @@ def gradient_boosting_benchmark(data, target, param_grid=None, n_folds=5, num_ex
     list_scores = list()
 
     for i in range(num_experiments):
-        inner_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
-        outer_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
-
-        for i in range(num_experiments):
+        if not inner_cv:
             inner_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+        if not outer_cv:
             outer_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
 
-            if feat_selection == 'lasso':
-                gbc = Pipeline([
-                    ('feature_selection', SelectFromModel(LogisticRegressionCV(penalty="l1"))),
-                    ('rf', GradientBoostingClassifier())
-                ])
-            elif feat_selection == 'mi':
-                gbc = Pipeline([
-                    ('feature_selection', SelectKBest(mutual_info_classif, k=10)),
-                    ('rf', GradientBoostingClassifier())
-                ])
-            elif feat_selection == 'f_score':
-                gbc = Pipeline([
-                    ('feature_selection', SelectKBest(f_classif, k=10)),
-                    ('rf', GradientBoostingClassifier())
-                ])
-            else:
-                gbc = Pipeline([
-                    ('rf', GradientBoostingClassifier())
-                ])
+        if feat_selection == 'lasso':
+            gbc = Pipeline([
+                ('feature_selection', SelectFromModel(LogisticRegressionCV(penalty="l1"))),
+                ('rf', GradientBoostingClassifier())
+            ])
+        elif feat_selection == 'mi':
+            gbc = Pipeline([
+                ('feature_selection', SelectKBest(mutual_info_classif, k=10)),
+                ('rf', GradientBoostingClassifier())
+            ])
+        elif feat_selection == 'f_score':
+            gbc = Pipeline([
+                ('feature_selection', SelectKBest(f_classif, k=10)),
+                ('rf', GradientBoostingClassifier())
+            ])
+        else:
+            gbc = Pipeline([
+                ('rf', GradientBoostingClassifier())
+            ])
 
-        clf = GridSearchCV(estimator=gbc, param_grid=param_grid, cv=inner_cv, scoring='roc_auc', n_jobs=-1)
+        clf = GridSearchCV(estimator=gbc, param_grid=param_grid, cv=inner_cv, scoring='roc_auc', n_jobs=n_jobs)
         nested_scores = cross_val_score(clf, X=data.drop(columns=target),
                                         y=data[target], cv=outer_cv, scoring='roc_auc')
 
@@ -141,10 +135,8 @@ def gradient_boosting_benchmark(data, target, param_grid=None, n_folds=5, num_ex
     return ans
 
 
-def lasso_benchmark(data, target, param_grid=None, n_folds=5, num_experiments=5):
-    from sklearn.model_selection import StratifiedKFold, GridSearchCV, cross_val_score
-    from sklearn.linear_model import LogisticRegression
-
+def lasso_benchmark(data, target, param_grid=None, n_folds=5, num_experiments=5, n_jobs=-1, inner_cv=None,
+                    outer_cv=None):
     if param_grid:
         param_grid = param_grid
     else:
@@ -155,11 +147,14 @@ def lasso_benchmark(data, target, param_grid=None, n_folds=5, num_experiments=5)
     list_scores = list()
 
     for i in range(num_experiments):
-        inner_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
-        outer_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+        if not inner_cv:
+            inner_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+        if not outer_cv:
+            outer_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+
         lr = LogisticRegression(penalty='l1', solver='liblinear')
 
-        clf = GridSearchCV(estimator=lr, param_grid=param_grid, cv=inner_cv, scoring='roc_auc', n_jobs=-1)
+        clf = GridSearchCV(estimator=lr, param_grid=param_grid, cv=inner_cv, scoring='roc_auc', n_jobs=n_jobs)
         nested_scores = cross_val_score(clf, X=data.drop(columns=target),
                                         y=data[target], cv=outer_cv, scoring='roc_auc')
 
@@ -174,7 +169,8 @@ def lasso_benchmark(data, target, param_grid=None, n_folds=5, num_experiments=5)
     return ans
 
 
-def elasticnet_benchmark(data, target, param_grid=None, n_folds=5, num_experiments=5):
+def elasticnet_benchmark(data, target, param_grid=None, n_folds=5, num_experiments=5, n_jobs=-1, inner_cv=None,
+                         outer_cv=None):
     from sklearn.model_selection import StratifiedKFold, GridSearchCV, cross_val_score
     from sklearn.linear_model import LogisticRegression
 
@@ -189,11 +185,14 @@ def elasticnet_benchmark(data, target, param_grid=None, n_folds=5, num_experimen
     list_scores = list()
 
     for i in range(num_experiments):
-        inner_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
-        outer_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+        if not inner_cv:
+            inner_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+        if not outer_cv:
+            outer_cv = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=i)
+
         lr = LogisticRegression(penalty='elasticnet', solver='saga')
 
-        clf = GridSearchCV(estimator=lr, param_grid=param_grid, cv=inner_cv, scoring='roc_auc', n_jobs=-1)
+        clf = GridSearchCV(estimator=lr, param_grid=param_grid, cv=inner_cv, scoring='roc_auc', n_jobs=n_jobs)
         nested_scores = cross_val_score(clf, X=data.drop(columns=target),
                                         y=data[target], cv=outer_cv, scoring='roc_auc')
 
