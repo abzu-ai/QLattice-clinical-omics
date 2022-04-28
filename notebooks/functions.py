@@ -85,11 +85,11 @@ def gradient_boosting_benchmark(data, target, param_grid=None, n_folds=5, num_ex
     if param_grid:
         param_grid = param_grid
     else:
-        param_grid = {'learning_rate': [0.05, 0.1, 0.2],
-                      'n_estimators': [50, 100, 200],
-                      'max_depth': [2, 3, 4],
-                      'max_features': [None, 'sqrt', 'log2'],
-                      'subsample': [0.7, 1]
+        param_grid = {'gb__learning_rate': [0.05, 0.1, 0.2],
+                      'gb__n_estimators': [50, 100, 200],
+                      'gb__max_depth': [2, 3, 4],
+                      'gb__max_features': [None, 'sqrt', 'log2'],
+                      'gb__subsample': [0.7, 1]
                       }
 
     data = pd.get_dummies(data)
@@ -107,21 +107,21 @@ def gradient_boosting_benchmark(data, target, param_grid=None, n_folds=5, num_ex
                 ('feature_selection', SelectFromModel(LogisticRegressionCV(penalty="l1", solver='liblinear',
                                                                            Cs=[100, 30, 10, 3, 1, .3, .1, .03, .01,
                                                                                .003, .001]))),
-                ('rf', GradientBoostingClassifier())
+                ('gb', GradientBoostingClassifier())
             ])
         elif feat_selection == 'mi':
             gbc = Pipeline([
                 ('feature_selection', SelectKBest(mutual_info_classif, k=10)),
-                ('rf', GradientBoostingClassifier())
+                ('gb', GradientBoostingClassifier())
             ])
         elif feat_selection == 'f_score':
             gbc = Pipeline([
                 ('feature_selection', SelectKBest(f_classif, k=10)),
-                ('rf', GradientBoostingClassifier())
+                ('gb', GradientBoostingClassifier())
             ])
         else:
             gbc = Pipeline([
-                ('rf', GradientBoostingClassifier())
+                ('gb', GradientBoostingClassifier())
             ])
 
         clf = GridSearchCV(estimator=gbc, param_grid=param_grid, cv=inner_cv, scoring='roc_auc', n_jobs=n_jobs)
