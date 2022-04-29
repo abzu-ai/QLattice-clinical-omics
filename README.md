@@ -147,7 +147,7 @@ best = models[0]
 best.plot(train, test)
 ```
 
-![model plot](QLattice_tutorial_files/model_plot.svg)
+![model plot](QLattice_tutorial_files/model_plot.pdf)
 
 With the plot below, we inspect the *Pearson correlation* between the values at each node and the true output:
 
