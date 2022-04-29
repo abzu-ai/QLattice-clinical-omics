@@ -118,25 +118,7 @@ models = ql.auto_run(
     )
 ```
 
-<img src="data:image/svg+xml,%3Csvg baseProfile='full' height='160.0' preserveAspectRatio='none' viewBox='0 0 471 160.0' width='471' xmlns='http://www.w3.org/2000/svg' xmlns:ev='http://www.w3.org/2001/xml-events' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cdefs /%3E%3Csvg class='graph' height='155.0' width='471' x='0' y='0'%3E%3Cdefs /%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='12' text-anchor='middle' x='406.0' y='99.0'%3ELoss: 1.82E-01%3C/text%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='12' text-anchor='start' x='0' y='145.0'%3EEpoch no. 20/20 - Tried 23076 models - Completed in 1m 6s.%3C/text%3E%3Crect class='node' fill='%2300F082' height='35' stroke='%231E1E1E' stroke-width='1' width='90' x='361' y='50.0'%3E%3Ctitle%3E_clinical AD diagnosis
-logistic:
-w=-4.8638
-bias=-1.1859%3C/title%3E%3C/rect%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='12' style='pointer-events:none' text-anchor='middle' x='406.0' y='71.5'%3E_clinica..%3C/text%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='10' style='pointer-events:none' text-anchor='end' x='449' y='59.0'%3E0%3C/text%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='10' style='pointer-events:none' text-anchor='start' x='363' y='59.0'%3Eout%3C/text%3E%3Cline stroke='%231E1E1E' x1='331' x2='361' y1='67.5' y2='67.5' /%3E%3Crect class='node' fill='%23FAFAFA' height='35' stroke='%23FF1EC8' stroke-width='1' width='90' x='241' y='50.0'%3E%3Ctitle%3Eadd%3C/title%3E%3C/rect%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='12' style='pointer-events:none' text-anchor='middle' x='286.0' y='71.5'%3Eadd%3C/text%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='10' style='pointer-events:none' text-anchor='end' x='329' y='59.0'%3E1%3C/text%3E%3Cline stroke='%231E1E1E' x1='211' x2='241' y1='37.5' y2='58.5' /%3E%3Cline stroke='%231E1E1E' x1='211' x2='241' y1='97.5' y2='76.5' /%3E%3Crect class='node' fill='%23FAFAFA' height='35' stroke='%23FF1EC8' stroke-width='1' width='90' x='121' y='20.0'%3E%3Ctitle%3Eadd%3C/title%3E%3C/rect%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='12' style='pointer-events:none' text-anchor='middle' x='166.0' y='41.5'%3Eadd%3C/text%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='10' style='pointer-events:none' text-anchor='end' x='209' y='29.0'%3E2%3C/text%3E%3Cline stroke='%231E1E1E' x1='91' x2='121' y1='37.5' y2='28.5' /%3E%3Cline stroke='%231E1E1E' x1='91' x2='121' y1='97.5' y2='46.5' /%3E%3Crect class='node' fill='%2300F082' height='35' stroke='%231E1E1E' stroke-width='1' width='90' x='1' y='20.0'%3E%3Ctitle%3EMAPT
-linear:
-scale=0.000038
-scale offset=24475.827038
-w=-2.125441
-bias=0.6458%3C/title%3E%3C/rect%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='12' style='pointer-events:none' text-anchor='middle' x='46.0' y='41.5'%3EMAPT%3C/text%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='10' style='pointer-events:none' text-anchor='end' x='89' y='29.0'%3E3%3C/text%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='10' style='pointer-events:none' text-anchor='start' x='3' y='29.0'%3Enum%3C/text%3E%3Crect class='node' fill='%2300F082' height='35' stroke='%231E1E1E' stroke-width='1' width='90' x='1' y='80.0'%3E%3Ctitle%3EGPC1
-linear:
-scale=0.000013
-scale offset=121701.256437
-w=-0.724680
-bias=0.7295%3C/title%3E%3C/rect%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='12' style='pointer-events:none' text-anchor='middle' x='46.0' y='101.5'%3EGPC1%3C/text%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='10' style='pointer-events:none' text-anchor='end' x='89' y='89.0'%3E4%3C/text%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='10' style='pointer-events:none' text-anchor='start' x='3' y='89.0'%3Enum%3C/text%3E%3Crect class='node' fill='%2300F082' height='35' stroke='%231E1E1E' stroke-width='1' width='90' x='121' y='80.0'%3E%3Ctitle%3ENID2
-linear:
-scale=0.000013
-scale offset=141003.958448
-w=0.792789
-bias=-1.3965%3C/title%3E%3C/rect%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='12' style='pointer-events:none' text-anchor='middle' x='166.0' y='101.5'%3ENID2%3C/text%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='10' style='pointer-events:none' text-anchor='end' x='209' y='89.0'%3E5%3C/text%3E%3Ctext fill='%231E1E1E' font-family='monospace' font-size='10' style='pointer-events:none' text-anchor='start' x='123' y='89.0'%3Enum%3C/text%3E%3C/svg%3E%3C/svg%3E" />
+<img src="QLattice_tutorial_files/model_fitting.png" alt="drawing" width="450"/>
 
 
 ## Inspect the top model
@@ -147,7 +129,7 @@ best = models[0]
 best.plot(train, test)
 ```
 
-![model plot](QLattice_tutorial_files/model_plot.pdf)
+![model plot](QLattice_tutorial_files/model_plot.png)
 
 With the plot below, we inspect the *Pearson correlation* between the values at each node and the true output:
 
