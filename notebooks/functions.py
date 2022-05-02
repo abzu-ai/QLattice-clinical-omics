@@ -211,8 +211,12 @@ def elasticnet_benchmark(data, target, param_grid=None, n_folds=5, num_experimen
     return ans
 
 
-def crossvalidation_as_framework(df, target, n_folds=5, random_state=42, use_sample_weights=True, **kwargs):
-    kfold_test = StratifiedKFold(n_folds, shuffle=True, random_state=random_state)
+def crossvalidation_as_framework(df, target, n_folds=5, random_state=42, use_sample_weights=True, cv=None,
+                                 **kwargs):
+    if cv:
+        kfold_test = cv
+    else:
+        kfold_test = StratifiedKFold(n_folds, shuffle=True, random_state=random_state)
 
     results = ModelResults()
 
