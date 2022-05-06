@@ -32,11 +32,7 @@ Finding AD biomarkers in proteomics data
 ---
 <div style='visibility:hidden' id='notebook-meta' data-filetype='.csv' data-notebook='.ipynb'></div>
 
-by: [Samuel Demharter and Meera Machado](https://www.abzu.ai/team)
-
 Feyn version: 2.1+
-
-Last updated: 23/09/2021
 
 Can the QLattice deal with omics data that is noisy and contains thousands of features? It certainly can!
 
