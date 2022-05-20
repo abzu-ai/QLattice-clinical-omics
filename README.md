@@ -1,7 +1,7 @@
 # QLattice Clinical Omics paper
 
 Reproducible analysis and data for "Identifying molecular interactions in omics data for clinical biomarker discovery"
-paper
+paper. Accompanying manuscript: https://www.biorxiv.org/content/10.1101/2022.01.14.475226v2.
 
 ## Reproduce results
 
