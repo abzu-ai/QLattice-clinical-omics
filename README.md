@@ -1,28 +1,21 @@
 # QLattice Clinical Omics paper
 
-Reproducible analysis and data for "Identifying molecular interactions in omics data for clinical biomarker discovery"
+Analysis and data for "Identifying molecular interactions in omics data for clinical biomarker discovery"
 paper.
 
-Accompanying manuscript: Identifying interactions in omics data for clinical biomarker discovery using symbolic regression. bioRxiv. 2022: https://www.biorxiv.org/content/10.1101/2022.01.14.475226v2.
+Accompanying manuscript: Identifying interactions in omics data for clinical biomarker discovery using symbolic 
+regression. bioRxiv. 2022: https://www.biorxiv.org/content/10.1101/2022.01.14.475226v3.
 
-## Reproduce results
 
-### Create environment
-We recommend using Virtualenv to create an environment.
-We use python 3.8.
+### Disclaimer
 
-From a terminal in the root folder:
+The results contained in the notebooks were generated using feyn 2.1.2, in combination with a remote call to  Abzu's 
+servers. Feyn 2 and the remote server are now deprecated, and substituted by feyn 3 -- which runs fully locally.
 
-```
-virtualenv venv -p 3.8
-source venv/bin/activate
-pip install -r requirements.txt
-```
+### Trasition to feyn 3
 
-### Run notebooks
-
-Under the folder notebooks there is a folder for each one of the four cases discussed in the paper.
-All models, performance metrics, and figures can be reproduced by running the notebooks.
+To be able to use the QLattice algorithm it is necessary to upgrade yout code to feyn 3. Instructions on how to do it can be found
+in https://docs.abzu.ai/docs/guides/getting_started/transition.html.
 
 
 ## QLattice tutorial
