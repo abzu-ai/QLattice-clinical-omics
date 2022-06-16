@@ -9,25 +9,29 @@ regression. bioRxiv. 2022: https://www.biorxiv.org/content/10.1101/2022.01.14.47
 
 ### Disclaimer
 
-The results contained in the notebooks were generated using feyn 2.1.2, in combination with a remote call to  Abzu's 
-servers. Feyn 2 and the remote server are now deprecated, and substituted by feyn 3 -- which runs fully locally.
+The results of the paper (contained in the notebooks) were generated using feyn 2.1.2, in combination with a remote call to Abzu's 
+servers. Feyn 2 and the remote server are now deprecated, and substituted by feyn 3 -- which runs fully locally. Feyn is
+the library containing the QLattice algorithm https://docs.abzu.ai/.
 
 ### Trasition to feyn 3
 
-To be able to use the QLattice algorithm it is necessary to upgrade yout code to feyn 3. Instructions on how to do it can be found
+To be able to use the QLattice algorithm it is necessary to upgrade your code to feyn 3. Instructions on how to do it can be found
 in https://docs.abzu.ai/docs/guides/getting_started/transition.html.
 
 
-## QLattice tutorial
+### QLattice tutorial
 
-Below is a basic tutorial on how to use the QLattice to find models that relate the input variables of a dataset to its output variable. Its Jupyter notebook can be found in the `notebooks` folder of this repository. Other tutorials can be found in the [Feyn+QLattice documentation page](https://docs.abzu.ai/docs/tutorials/python/covid_mrna.html).
+To help new users, we include include in this README a tutorial on how to train QLattice models using feyn 3. 
+Its Jupyter notebook can be found in the `notebooks` folder of this repository.
+
+Other tutorials can be found in the [Feyn+QLattice documentation page](https://docs.abzu.ai/docs/tutorials/python/covid_mrna.html).
 
 ---
-Finding AD biomarkers in proteomics data
+QLattice Tutorial: Finding AD biomarkers in proteomics data
 ---
 <div style='visibility:hidden' id='notebook-meta' data-filetype='.csv' data-notebook='.ipynb'></div>
 
-Feyn version: 2.1+
+Feyn version: 3.0.1+
 
 Can the QLattice deal with omics data that is noisy and contains thousands of features? It certainly can!
 
@@ -105,7 +109,7 @@ models = ql.auto_run(
     output_name=target,
     kind='classification',
     stypes=stypes,
-    n_epochs=20
+    n_epochs=30
     )
 ```
 
@@ -155,7 +159,7 @@ best.plot_response_1d(train, by = "MAPT", input_constraints=fixed)
 
 
 
-![png](QLattice_tutorial_files/QLattice_tutorial_17_0.png)
+![png](QLattice_tutorial_files/plot_response_1d.png)
 
 
 
