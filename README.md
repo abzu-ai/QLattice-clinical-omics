@@ -21,7 +21,7 @@ in https://docs.abzu.ai/docs/guides/getting_started/transition.html.
 
 ### QLattice tutorial
 
-We include include in this README a tutorial on how to train QLattice models using feyn 3. 
+We include in this README a tutorial on how to train QLattice models using feyn 3. 
 Its Jupyter notebook can be found in the `notebooks` folder of this repository.
 
 Other tutorials can be found in the [Feyn+QLattice documentation page](https://docs.abzu.ai/docs/tutorials/python/covid_mrna.html).
