@@ -1,10 +1,6 @@
 # QLattice Clinical Omics paper
 
-Analysis and data for "Identifying molecular interactions in omics data for clinical biomarker discovery"
-paper.
-
-Accompanying manuscript:
-[Identifying interactions in omics data for clinical biomarker discovery using symbolic regression, Bioinformatics, 2022](https://doi.org/10.1093/bioinformatics/btac405)
+Analysis and data for [Identifying interactions in omics data for clinical biomarker discovery using symbolic regression, Bioinformatics, 2022](https://doi.org/10.1093/bioinformatics/btac405)
 
 ### Disclaimer
 
