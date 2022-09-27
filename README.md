@@ -4,7 +4,7 @@ Analysis and data for "Identifying molecular interactions in omics data for clin
 paper.
 
 Accompanying manuscript:
-[Niels Johan Christensen, Samuel Demharter, Meera Machado, Lykke Pedersen, Marco Salvatore, Valdemar Stentoft-Hansen, Miquel Triana Iglesias, Identifying interactions in omics data for clinical biomarker discovery using symbolic regression, Bioinformatics, Volume 38, Issue 15, 1 August 2022, Pages 3749–3758](https://doi.org/10.1093/bioinformatics/btac405)
+Niels Johan Christensen, Samuel Demharter, Meera Machado, Lykke Pedersen, Marco Salvatore, Valdemar Stentoft-Hansen, Miquel Triana Iglesias [Identifying interactions in omics data for clinical biomarker discovery using symbolic regression, Bioinformatics, Volume 38, Issue 15, 1 August 2022, Pages 3749–3758](https://doi.org/10.1093/bioinformatics/btac405)
 
 ### Disclaimer
 
