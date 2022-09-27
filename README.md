@@ -3,8 +3,11 @@
 Analysis and data for "Identifying molecular interactions in omics data for clinical biomarker discovery"
 paper.
 
-Accompanying manuscript: Identifying interactions in omics data for clinical biomarker discovery using symbolic 
-regression. Bioinformatics, 2022: https://academic.oup.com/bioinformatics/article/38/15/3749/6613136.
+Accompanying manuscript:
+
+Identifying interactions in omics data for clinical biomarker discovery using symbolic 
+regression.
+Bioinformatics, 2022: https://academic.oup.com/bioinformatics/article/38/15/3749/6613136.
 
 
 ### Disclaimer
