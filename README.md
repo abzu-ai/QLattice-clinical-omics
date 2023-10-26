@@ -28,8 +28,6 @@ QLattice Tutorial: Finding AD biomarkers in proteomics data
 
 Feyn version: 3.0.1+
 
-Can the QLattice deal with omics data that is noisy and contains thousands of features? It certainly can!
-
 Omics data typically contains hundreds to thousands of features (proteins, transcripts, methylated DNA etc.) that are measured in samples derived from sources such as blood, tissue or cell culture. These types of approaches are often used for exploratory analysis e.g. in **biomarker discovery** or understanding the **mechanism of action** of a certain drug. It often resembles a bit of a "fishing exercise".
 
 Thus, there is a need to quickly and reliably identify the most important **features** and their **interactions** that contribute to a certain signal (e.g. disease state, cell-type identity, cancer detection).
